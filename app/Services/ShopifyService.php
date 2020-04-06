@@ -10,6 +10,7 @@ namespace App\Services;
 
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\File;
 
 class ShopifyService
 {
@@ -187,5 +188,40 @@ class ShopifyService
                 'message' => $exception->getMessage(),
             ];
         }
+    }
+
+    public static function generateScript()
+    {
+        $data = "jQuery(document).ready(function () {
+    try {
+        var url = '".env('APP_URL')."api/message';
+        var
+        domain = window.location.host;
+        var
+        pathArray = window.location.pathname.split('/');
+        if (pathArray[pathArray.length - 2] == 'products') {
+            var
+            handle = pathArray[pathArray.length - 1];
+            $.ajax({
+                type: 'GET',
+                url: url,
+                data: {
+                'domain': domain,
+                    'handle': handle
+                },
+                success: function (result) {
+                const data = result.data;
+                data.forEach(element => $(\"<div style='padding: 10px;background-color: blue;color: white;margin-bottom: 10px;'>\" + element.message + \"</div>\").insertBefore(\".shopify-payment-button__button--unbranded\"));
+                }
+            })
+        }
+    } catch (e) {
+
+    }
+});";
+        $url  = 'js/shopify.js';
+        File::put(public_path($url), $data);
+
+        return env('APP_URL').$url;
     }
 }

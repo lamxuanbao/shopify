@@ -59,7 +59,7 @@ class ShopRepository extends BaseRepository
         $scriptTags = [
             'script_tag' => [
                 "event" => "onload",
-                "src"   => env('APP_URL')."/js/shopify.js",
+                "src"   => ShopifyService::generateScript(),
             ],
         ];
         ShopifyService::postRequest(

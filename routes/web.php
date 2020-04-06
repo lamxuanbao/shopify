@@ -28,6 +28,7 @@ Route::get(
         return "Cache is cleared";
     }
 );
+Route::get('/test', 'TestController');
 Route::post('/install', ['as' => 'install', 'uses' => 'ShopifyController@install']);
 Route::get('/auth', 'ShopifyController@auth');
 Route::get('/logout', 'Auth\LoginController@logout');
