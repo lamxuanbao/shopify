@@ -16,6 +16,29 @@
 <div class="container">
     @yield('content')
 </div>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+{{--<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-messaging.js"></script>--}}
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "{{env('FIREBASE_API_KEY')}}",
+        authDomain: "{{env('FIREBASE_AUTH_DOMAIN')}}",
+        databaseURL: "{{env('FIREBASE_DATABASE_URL')}}",
+        projectId: "{{env('FIREBASE_PROJECt_ID')}}",
+        storageBucket: "{{env('FIREBASE_STORAGE_BUCKET')}}",
+        messagingSenderId: "{{env('FIREBASE_MESSAGING_SENDER_ID')}}",
+        appId: "1:314284626914:web:4793306aa581d2e4"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+</script>
 @stack('scripts')
 </body>
 </html>

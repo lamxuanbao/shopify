@@ -10,9 +10,14 @@
     "require": {
         "php": "^7.2",
         "barryvdh/laravel-cors": "^1.0",
+        "facebook/graph-sdk": "~5.0",
+        "facebook/php-business-sdk": "5.0.5",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.5",
+        "jenssegers/mongodb": "^3.6",
+        "ktamas77/firebase-php": "^2.2",
         "laravel/framework": "^6.2",
+        "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "prettus/l5-repository": "^2.6"
     },

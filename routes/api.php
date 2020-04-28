@@ -20,4 +20,3 @@ Route::middleware('auth:api')
             return $request->user();
         }
     );
-Route::get('/message', 'ProductMessageController@index');

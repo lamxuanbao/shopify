@@ -2,14 +2,12 @@
 
 namespace App\Entities;
 
-use Illuminate\Database\Eloquent\Model;
-
 /**
  * Class Product.
  *
  * @package namespace App\Entities;
  */
-class Product extends Model
+class Product extends BaseModel
 {
 
     /**

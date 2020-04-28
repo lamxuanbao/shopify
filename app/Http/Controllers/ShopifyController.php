@@ -9,9 +9,8 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\ShopRepository;
-use App\Services\ShopifyService;
+use App\Services\Shopify\ShopifyFacade;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class ShopifyController extends Controller
 {
@@ -23,7 +22,7 @@ class ShopifyController extends Controller
     public function install(Request $request)
     {
         $params = $request->all();
-        $url    = ShopifyService::install($params['domain'] ?? null);
+        $url    = ShopifyFacade::install($params['domain'] ?? null);
 
         return redirect()->to($url);
     }

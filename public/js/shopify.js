@@ -1,6 +1,6 @@
 jQuery(document).ready(function () {
     try {
-        var url = 'https://ece13c5f.ngrok.io/api/message';
+        var url = 'https://4bbc8f62.ngrok.io/api/message';
         var
         domain = window.location.host;
         var

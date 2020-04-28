@@ -174,8 +174,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Prettus\Repository\Providers\RepositoryServiceProvider::class
-
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Jenssegers\Mongodb\MongodbServiceProvider::class
     ],
 
     /*
@@ -226,6 +227,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

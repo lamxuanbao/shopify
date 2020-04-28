@@ -2,14 +2,12 @@
 
 namespace App\Entities;
 
-use Illuminate\Database\Eloquent\Model;
-
 /**
  * Class Shop.
  *
  * @package namespace App\Entities;
  */
-class Shop extends Model
+class Shop extends BaseModel
 {
 
     /**
@@ -39,4 +37,8 @@ class Shop extends Model
         'force_ssl',
     ];
 
+    public function user()
+    {
+        return $this->hasMany(SocialPageConversation::class, 'social_page_id');
+    }
 }

@@ -30,5 +30,29 @@ class AppServiceProvider extends ServiceProvider
             ],
             'App\Http\Composers\ProductComposer'
         );
+        View::composer(
+            [
+                'partial/_social',
+            ],
+            'App\Http\Composers\SocialComposer'
+        );
+        View::composer(
+            [
+                'facebook_page',
+            ],
+            'App\Http\Composers\FacebookPageComposer'
+        );
+        View::composer(
+            [
+                'partial/_posts',
+            ],
+            'App\Http\Composers\PostsComposer'
+        );
+        View::composer(
+            [
+                'post_detail',
+            ],
+            'App\Http\Composers\PostDetailComposer'
+        );
     }
 }

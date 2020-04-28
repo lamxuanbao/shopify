@@ -6,8 +6,7 @@
  * Time: 11:30
  */
 
-namespace App\Services;
-
+namespace App\Services\Shopify\Src;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\File;
@@ -19,7 +18,7 @@ class ShopifyService
      *
      * @return string
      */
-    public static function install(string $domain): string
+    public function install(string $domain): string
     {
         $clientId    = config('shopify.client_id');
         $scopes      = implode(
@@ -36,7 +35,7 @@ class ShopifyService
      *
      * @return bool
      */
-    public static function verifyRequest(array $data): bool
+    public function verifyRequest(array $data): bool
     {
         $tmp = [];
         if (is_string($data)) {
@@ -93,7 +92,7 @@ class ShopifyService
      *
      * @return array
      */
-    public static function getAccessToken(string $shop, string $code): array
+    public function getAccessToken(string $shop, string $code): array
     {
         $client = new Client();
         try {
@@ -130,7 +129,7 @@ class ShopifyService
         }
     }
 
-    public static function postRequest(string $shop, $accessToken, $action, array $data, $version = '2020-01')
+    public function postRequest(string $shop, $accessToken, $action, array $data, $version = '2020-01')
     {
         $client = new Client();
         try {
@@ -159,7 +158,7 @@ class ShopifyService
         }
     }
 
-    public static function getRequest(string $shop, $accessToken, $action, $version = '2020-01')
+    public function getRequest(string $shop, $accessToken, $action, $version = '2020-01')
     {
         $client = new Client();
         try {
@@ -190,7 +189,7 @@ class ShopifyService
         }
     }
 
-    public static function generateScript()
+    public function generateScript()
     {
         $data = "jQuery(document).ready(function () {
     try {

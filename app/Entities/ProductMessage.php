@@ -2,14 +2,12 @@
 
 namespace App\Entities;
 
-use Illuminate\Database\Eloquent\Model;
-
 /**
  * Class ProductMessage.
  *
  * @package namespace App\Entities;
  */
-class ProductMessage extends Model
+class ProductMessage extends BaseModel
 {
 
     /**

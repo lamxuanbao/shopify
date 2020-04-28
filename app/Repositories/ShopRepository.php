@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
-use App\Services\ShopifyService;
+use App\Entities\User;
+use App\Services\Shopify\ShopifyFacade;
 use Illuminate\Container\Container as Application;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Entities\Shop;
@@ -33,14 +33,14 @@ class ShopRepository extends BaseRepository
 
     public function auth($params)
     {
-        $verify_request = ShopifyService::verifyRequest($params);
+        $verify_request = ShopifyFacade::verifyRequest($params);
 
         if (!$verify_request) {
             throw new \Exception('Verify request fail');
         }
         $domain      = $params['shop'] ?? null;
         $code        = $params['code'] ?? null;
-        $accessToken = ShopifyService::getAccessToken($domain, $code);
+        $accessToken = ShopifyFacade::getAccessToken($domain, $code);
         if (!$accessToken['status']) {
             throw new \Exception($accessToken['message']);
         }
@@ -48,7 +48,7 @@ class ShopRepository extends BaseRepository
 
         $accessToken = $data['access_token'];
 
-        $info = ShopifyService::getRequest($domain, $accessToken, 'shop');
+        $info = ShopifyFacade::getRequest($domain, $accessToken, 'shop');
         if (!$info['status']) {
             throw new \Exception($info['message']);
         }
@@ -59,10 +59,10 @@ class ShopRepository extends BaseRepository
         $scriptTags = [
             'script_tag' => [
                 "event" => "onload",
-                "src"   => ShopifyService::generateScript(),
+                "src"   => ShopifyFacade::generateScript(),
             ],
         ];
-        ShopifyService::postRequest(
+        ShopifyFacade::postRequest(
             $domain,
             $accessToken,
             'script_tags',
@@ -81,8 +81,7 @@ class ShopRepository extends BaseRepository
                 ]
             )
         );
-
-        $user = $this->userRepository->updateOrCreate(
+        $user   = $this->userRepository->updateOrCreate(
             [
                 'email' => $shop['email'],
             ],
@@ -93,8 +92,7 @@ class ShopRepository extends BaseRepository
         );
         Auth::loginUsingId($user->id, true);
 
-
-        $products = ShopifyService::getRequest(
+        $products = ShopifyFacade::getRequest(
             $domain,
             $accessToken,
             'products',

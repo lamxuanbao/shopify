@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ResponseService;
+use App\Services\Response\ResponseFacade;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,6 +16,6 @@ class Controller extends BaseController
 
     public function response($data, $code = Response::HTTP_OK, $message = null)
     {
-        return ResponseService::send($data, $code, $message);
+        return ResponseFacade::send($data, $code, $message);
     }
 }
